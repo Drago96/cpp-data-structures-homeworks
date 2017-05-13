@@ -5,7 +5,7 @@
 
 //task1
 template <typename T>
-bool binOrdTree<T>::contains(const node_bin<T>* p,T n) const
+bool contains(const node_bin<T>* p,T n) 
 {
 	if(p==NULL)
 	{
@@ -28,7 +28,7 @@ bool binOrdTree<T>::contains(const node_bin<T>* p,T n) const
 
 
 template <typename T>
-T binOrdTree<T>::smallestPredecessorHelper (const node_bin<T>* p,T x, T y) const
+T smallestPredecessorHelper (const node_bin<T>* p,T x, T y) 
 {
 	if(p==NULL)
 	{
@@ -58,7 +58,7 @@ T binOrdTree<T>::smallestPredecessorHelper (const node_bin<T>* p,T x, T y) const
 }
 
 template <typename T>
-T binOrdTree<T>::smallestPredecessor (T x, T y) const
+T smallestPredecessor (node_bin<T>* root, T x, T y) 
 {
 	T current=smallestPredecessorHelper(root,x,y);
 	return current;
@@ -66,27 +66,27 @@ T binOrdTree<T>::smallestPredecessor (T x, T y) const
 
 //task2
 template <typename T>
-void binOrdTree<T>::smallestInOrderHelper(const node_bin<T>* p,int k)  
+void smallestInOrderHelper(const node_bin<T>* p,int k,int& counter)  
 {
   if (p) 
   {
-    smallestInOrderHelper(p->left,k);
+    smallestInOrderHelper(p->left,k,counter);
 	counter++;
 	if(k==counter)
 	{
 		cout << p->inf << " ";
 		return;
 	}
-	smallestInOrderHelper(p->right,k);
+	smallestInOrderHelper(p->right,k,counter);
   }
 }
 
 template <typename T>
-void binOrdTree<T>::smallestInOrder(int k) 
+void smallestInOrder(node_bin<T>* root,int k) 
 
 {
-	counter=0;
-	smallestInOrderHelper(root,k);
+	int counter=0;
+	smallestInOrderHelper(root,k,counter);
 	if(counter<k)
 	{
 		cout<<"element not found";
@@ -150,7 +150,7 @@ int main()
 	cout<<"Find lowest common element of a and b: ";
 	try
 	{
-		cout<<testTree.smallestPredecessor(4,14)<<endl;
+		cout<<smallestPredecessor(testTree.getRoot(),4,14)<<endl;
 	}
 	catch(invalid_argument fail)
 	{
@@ -158,7 +158,7 @@ int main()
 	}
 	//task2
 	cout<<"Find lowest element k: ";
-	testTree.smallestInOrder(3);
+	smallestInOrder(testTree.getRoot(),3);
 	//task3
 	cout<<"Sum nodes: ";
 	sumNodes(testTree.getRoot());

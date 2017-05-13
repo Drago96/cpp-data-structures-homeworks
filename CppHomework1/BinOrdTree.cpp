@@ -42,14 +42,6 @@ public:
 
   void deleteNode(const T&);
   void minTree(T&, binOrdTree&) const;
-
-   //task1
-  T smallestPredecessor(T x, T y) const;
-
-  //task2
-  void smallestInOrder(int k) ;
-
-  //task3
   node_bin<T>* getRoot() const;
 
 private:
@@ -60,13 +52,6 @@ private:
   void pr(const node_bin<T>*) const;
   void add(node_bin<T>*&, const T&) const;
 
-  //task1
-  bool contains(const node_bin<T>* p,T n) const;
-  T smallestPredecessorHelper(const node_bin<T>* p,T x, T y) const;
-
-  //task2
-  void smallestInOrderHelper(const node_bin<T>*,int k) ;
-  int counter;
 };
 
 template <typename T>
